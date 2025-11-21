@@ -1,0 +1,49 @@
+cmake_minimum_required(VERSION 3.8)
+project(rm_comm_ros2)
+
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+
+# LibSerial (system library)
+find_library(LIBSERIAL_LIB serial)
+if(NOT LIBSERIAL_LIB)
+  message(FATAL_ERROR "libserial not found. Please install 'libserial-dev'.")
+endif()
+
+include_directories(
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include/rm_comm_ros2
+)
+
+add_library(rm_comm_protocol INTERFACE)
+
+target_include_directories(rm_comm_protocol INTERFACE
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include/rm_comm_ros2
+)
+
+add_executable(serial_rw_node src/serial_rw_node.cpp)
+target_link_libraries(serial_rw_node rm_comm_protocol ${LIBSERIAL_LIB})
+ament_target_dependencies(serial_rw_node rclcpp std_msgs)
+
+install(TARGETS
+  serial_rw_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY include/
+  DESTINATION include
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_package() 

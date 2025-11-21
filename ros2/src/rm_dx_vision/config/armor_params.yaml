@@ -1,0 +1,12 @@
+armor_node:
+  ros__parameters:
+    image_topic: "/image_raw"
+    target_color: 0
+    dt: 0.01
+    rx_topic: "/autoaim/rx"
+    tx_topic: "/autoaim/tx"
+    blue_exp_time: 1000.0
+    red_exp_time: 1000.0
+    switch_INFO: 1
+    switch_ERROR: 1
+    resize: 1.0 

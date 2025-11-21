@@ -3,7 +3,6 @@
 #include "globalParam.hpp"
 #include "opencv2/core/mat.hpp"
 #include "tracker.hpp"
-// #include <camera.hpp>
 #include <chrono>
 #include <cstdint>
 #include <memory>

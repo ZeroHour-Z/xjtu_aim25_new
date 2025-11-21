@@ -1,0 +1,26 @@
+hk_camera_node:
+  ros__parameters:
+    topic_name: "/image_raw"
+    publish_rate: 200.0
+
+    color: 1           # BLUE
+    attack_mode: 1     # ARMOR
+    cam_index: 0
+
+    height: 1080.0
+    width: 1440.0
+
+    enable_auto_exp: 0   # MV_EXPOSURE_AUTO_MODE_OFF
+    energy_exp_time: 200.0
+    armor_exp_time: 290.0
+
+    enable_auto_gain: 0  # MV_GAIN_MODE_OFF
+    gain: 17.0
+    gamma_value: 0.7
+
+    frame_rate: 180.0
+    pixel_format: 17301512  # PixelType_Gvsp_BayerRG8 (MVS)
+
+    use_image_shm: false
+    image_shm_name: "/image_raw_shm"
+    image_shm_size: 8388672 
